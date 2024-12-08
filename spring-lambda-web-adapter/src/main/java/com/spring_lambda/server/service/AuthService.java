@@ -18,7 +18,7 @@ public class AuthService {
     @Autowired
     private AuthRepository authRepository;
 
-    private final String secretKey = "70abceeb20d82fc2d55e8934d1ad05ad17609752";
+    private final String secretKey = "70abceeb20d82fc2d55e8934d1ad05ad1760975270abceeb20d82fc2d55e8934d1ad05ad17609752";
     private final long expirationTimeMs = 3600000; // 1 hora
 
     public void sendAuthCode(String identifier) {

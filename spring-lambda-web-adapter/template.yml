@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  sam-app
+
+  Sample SAM Template for sam-app
+
+Globals:
+  Function:
+    Timeout: 10
+
+Resources:
+  LambdaWebAdapterFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      MemorySize: 2048
+      Tracing: Active
+      Environment:
+        Variables:
+          RUST_LOG: info
+          READINESS_CHECK_PATH: /healthz
+          REMOVE_BASE_PATH: /v1
+      AutoPublishAlias: live
+      DeploymentPreference:
+        Type: AllAtOnce
+      Events:
+        Root:
+          Type: HttpApi
+          Properties:
+            Path: /v1
+            Method: ANY
+        AuthRoute:
+          Type: HttpApi
+          Properties:
+            Path: /v1/{proxy+}
+            Method: ANY
+    Metadata:
+      DockerTag: java8.al2-maven-v1
+      DockerContext: .
+      Dockerfile: Dockerfile
+
+Outputs:
+  LambdaWebAdapterApi:
+    Description: "API Gateway endpoint URL for Prod stage for LambdaWebAdapter function"
+    Value: !Sub "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/v1"
+

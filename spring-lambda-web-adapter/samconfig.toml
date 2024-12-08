@@ -1,0 +1,8 @@
+version = 0.1
+[default.deploy.parameters]
+stack_name = "lambda-web-adapter"
+resolve_s3 = true
+s3_prefix = "lambda-web-adapter"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+image_repositories = ["LambdaWebAdapterFunction=077558009148.dkr.ecr.us-east-1.amazonaws.com/lambdawebadapter5e7baade/lambdawebadapterfunction598d6f8crepo"]
