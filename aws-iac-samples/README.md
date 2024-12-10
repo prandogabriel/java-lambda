@@ -1,20 +1,32 @@
-# Exemplos de comandos AWS CLI
+# AWS
 
-## Amazon S3
+## Install AWS CLI
+link doc para instalação [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#getting-started-install-instructions)
 
-### Criar um Bucket
+Como criar user e configurar CLI [criar user iam passo a passo](./iam/README.md)
+
+## Install SAM CLI
+link doc para instalação [SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html#install-sam-cli-instructions)
+
+
+
+## Exemplos de comandos AWS CLI
+
+### Amazon S3
+
+#### Criar um Bucket
 
 ```bash
 aws s3 mb s3://meu-novo-bucket
 ```
 
-### Listar Buckets
+#### Listar Buckets
 
 ```bash
 aws s3 ls
 ```
 
-### Enviar um Arquivo para o Bucket
+#### Enviar um Arquivo para o Bucket
 
 ```bash
 aws s3 cp meu-arquivo.txt s3://meu-novo-bucket/
@@ -24,7 +36,7 @@ Baixar um Arquivo do Bucket
 aws s3 cp s3://meu-novo-bucket/meu-arquivo.txt .
 ```
 
-### Excluir um Bucket
+#### Excluir um Bucket
 
 ```bash
 aws s3 rb s3://meu-novo-bucket --force
@@ -32,13 +44,13 @@ aws s3 rb s3://meu-novo-bucket --force
 
 ## Amazon EC2
 
-### Listar Imagens AMI Disponíveis
+#### Listar Imagens AMI Disponíveis
 
 ```bash
 aws ec2 describe-images --owners amazon
 ```
 
-### Criar uma Instância
+#### Criar uma Instância
 
 ```bash
 aws ec2 run-instances \
@@ -50,19 +62,19 @@ aws ec2 run-instances \
     --subnet-id subnet-12345678
 ```
 
-### Listar Instâncias
+#### Listar Instâncias
 
 ```bash
 aws ec2 describe-instances
 ```
 
-### Parar uma Instância
+#### Parar uma Instância
 
 ```bash
 aws ec2 stop-instances --instance-ids i-1234567890abcdef0
 ```
 
-### Excluir uma Instância
+#### Excluir uma Instância
 
 ```bash
 aws ec2 terminate-instances --instance-ids i-1234567890abcdef0
@@ -70,15 +82,15 @@ aws ec2 terminate-instances --instance-ids i-1234567890abcdef0
 
 ## Cloudformation 
 
-### Como Implantar o Template
+#### Como Implantar o Template
 
-#### Valide o Template:
+##### Valide o Template:
 
 ```bash
 aws cloudformation validate-template --template-body file://cloudformation/ec2-instance.yaml
 ``` 
 
-#### Crie o Stack:
+##### Crie o Stack:
 
 ```bash
 aws cloudformation create-stack \
@@ -86,13 +98,13 @@ aws cloudformation create-stack \
     --template-body file://cloudformation/ec2-instance.yaml
 ``` 
 
-#### Verifique o Status do Stack:
+##### Verifique o Status do Stack:
 
 ```bash
 aws cloudformation describe-stacks --stack-name MyEC2Stack
 ```
 
-#### Excluir o Stack:
+##### Excluir o Stack:
 
 ```bash
 aws cloudformation delete-stack --stack-name MyEC2Stack
